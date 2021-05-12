@@ -13,17 +13,19 @@ In particular, code for data processing as well as implementation and evaluation
 
 The data was supplied by the German weather service (Deutscher Wetterdienst, DWD) and is not publicly available.
 
-### Ensemble Forecasts (COSMO-DE-EPS)
+### Ensemble Forecasts
+
+**COSMO-DE-EPS**
 
 - Variables: Wind gust and various additional predictors
 - Time period: 2010-12-08 -- 2016-12-31
-- Forecast initialization time: 00UTC
+- Forecast initialization time: 00 UTC
 - Members: 20
-- Forecast lead times: 00--21h
+- Forecast lead times: 00--21 h
 - Area: Germany
 - Resolution: 2.8 km horizontal resolution
 
-More information on COSMO can be found here: http://www.cosmo-model.org/.
+More information on the COSMO model can be found here: http://www.cosmo-model.org/.
 
 ### Observations
 
@@ -64,7 +66,8 @@ Based on neural networks and station embedding we built a locally adaptive joint
 
 ## Code
 
-Each R-file includes functions that can be applied to data of the desired format.
+Due to the fact that the data cannot be publicly distributed, we supply the code used for data processing, postprocessing and evaluation. The routines for calling these functions are not supplied. 
+Each of the R-files includes functions that can be applied to data of the desired format.
 
 | File | Description |
 | ---- | ----------- | 
@@ -80,11 +83,11 @@ Each R-file includes functions that can be applied to data of the desired format
 | `pp_qrf` | Postprocessing via QRF. |
 
 
-### Comments on the data structure
+### Data structure used
 
-The functions are based on the structure of the COSMO data, which was preprocessed to R-dataframes. We hope that the following comments will help the reader in understanding the code. 
+The functions are based on the structure of the COSMO data, which is given by R-dataframes (generated from netCDF-files). We hope that the following comments will help the reader in understanding the code. 
 
-The following table lists the variables names that we use in our data:
+The following table describes variable names that are referred to in the code:
 
 | Variable | Description |
 | ---- | ----------- | 
@@ -96,7 +99,7 @@ The following table lists the variables names that we use in our data:
 | `sens_mean_i` | Mean of the i-th sub-ensemble (members 5(i-1) + 1 to 5i, i.e. 1--5, 6--10, 11--15, 16--20) of the wind gust ensemble in m/s, i = 1, ..., 4. |
 | `sens_spread_i` | Spread of the i-th sub-ensemble (members 5(i-1) + 1 to 5i, i.e. 1--5, 6--10, 11--15, 16--20) of the wind gust ensemble in m/s, i = 1, ..., 4. |
 
-The data processing further relies on the dataframe `loc_data` that includes the following variables:
+The data processing further makes use of the `loc_data`-dataframe that includes the following variables:
 
 | Variable | Description |
 | ---- | ----------- | 
