@@ -1,1 +1,3 @@
-# paper_pp_wind_gusts
+# Github Repository including code of Schulz and Lerch (2021)
+
+Description
