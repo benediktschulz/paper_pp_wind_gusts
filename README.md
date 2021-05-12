@@ -13,9 +13,7 @@ In particular, code for data processing as well as implementation and evaluation
 
 The data was supplied by the German weather service (Deutscher Wetterdienst, DWD) and is not publicly available.
 
-### Forecasts
-
-**COSMO-DE-EPS**
+### Ensemble Forecasts (COSMO-DE-EPS)
 
 - Variables: Wind gust and various additional predictors
 - Time period: 2010-12-08 -- 2016-12-31
