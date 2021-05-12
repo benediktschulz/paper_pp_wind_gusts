@@ -1,32 +1,4 @@
-## File containing functions for evaluation of ensemble and postprocessed forecasts
-
-#### Import ####
-# Import basic functions
-source(paste0(getwd(), "/fn_basic.R"))
-
-#### Ensemble spread ####
-# Calculate spread of ensemble (formula from Jordan et al. (2019))
-fn_spread <- function(x){
-  ###-----------------------------------------------------------------------------
-  ###Input
-  #x...Ensemble forecast (n_ens vector)
-  ###-----------------------------------------------------------------------------
-  ###Output
-  #res...Ensemble spread
-  ###-----------------------------------------------------------------------------
-  
-  #### Spread calculation ####
-  # Get ensemble size
-  n_ens <- length(x)
-  
-  # Matrix for double sum
-  A <- matrix(data = x,
-              ncol = n_ens,
-              nrow = n_ens)
-  
-  # Calculate return spread
-  return( sum(abs(A - t(A)), na.rm = TRUE) / (n_ens^2) )
-}
+## Functions for evaluation
 
 #### Coverage ####
 # Calculate coverage of a prediction interval of a probabilistic forecast
@@ -708,4 +680,66 @@ fn_scores_distr <- function(f, y, n_ens = 20, skip_evals = NULL){
   
   # Return
   return(scores_pp)
+}
+
+#### Diebold-Mariano test ####
+# Function for Diebold-Mariano test statistic
+fn_dm <- function(s0, s1){
+  ###-----------------------------------------------------------------------------
+  ###Input
+  #s0...Scores of method 0 (n vector)
+  #s1...Scores of method 1 (n vector)
+  ###-----------------------------------------------------------------------------
+  ###Output
+  #res...Diebold-Mariano test statistic for k = 0 (scalar)
+  ###-----------------------------------------------------------------------------
+  
+  #### Initiation ####
+  # Check missing values
+  i_na <- (is.na(s0) | is.na(s1))
+  
+  # Cut missing values
+  if(any(i_na)){
+    if(all(i_na)){ return(NA) }
+    s0 <- s0[!i_na]
+    s1 <- s1[!i_na]
+  }
+  
+  #### Calculation ####
+  # Calculate test statistic
+  res <- sqrt(length(s0))*(mean(s0) - mean(s1))/mean((s0 - s1)^2)
+  
+  # output
+  return(res)
+}
+#### Benjamini-Hochberg correction ####
+# Function for Diebold-Mariano test statistic
+fn_bh <- function(p_vals, alpha_fdr = 0.05){
+  ###-----------------------------------------------------------------------------
+  ###Input
+  #p_vals......p-values of individual tests (n vector)
+  #alpha_fdr...Level of BH procedure / false discovery rate (positive scalar)
+  #............Default: 0.05 -> 5 %
+  ###-----------------------------------------------------------------------------
+  ###Output
+  #res...Significance of individual tests (n vector of logicals)
+  ###-----------------------------------------------------------------------------
+  
+  #### Initiation ####
+  # Number of p-values
+  n_p <- length(p_vals)
+  
+  #### Calculation ####
+  # Ranks of p-values
+  pv_rank <- rank(x = p_vals,
+                  ties.method = "random")
+  
+  # Limits for sorted p values
+  limits <- alpha_fdr*(1:n_p)/n_p
+  
+  # Which p-values are smaller than their limits?
+  res <- (p_vals <= limits[pv_rank])
+  
+  # output
+  return(res)
 }
