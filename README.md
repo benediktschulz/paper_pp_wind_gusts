@@ -1,6 +1,6 @@
 # Statistical Postprocessing of ensemble forecasts of wind gusts
 
-This repository provides R code accompanying the paper
+This repository provides R-code accompanying the paper
 
 > Schulz, B. and Lerch, S. (2021). 
 > Name of the paper. 
@@ -18,10 +18,10 @@ The data was supplied by the German weather service (Deutscher Wetterdienst, DWD
 **COSMO-DE-EPS**
 
 - Variables: Wind gust and various additional predictors
-- Time period: 2010-12-08 -- 2016-12-31
+- Time period: 2010-12-08 - 2016-12-31
 - Forecast initialization time: 00 UTC
 - Members: 20
-- Forecast lead times: 00--21 h
+- Forecast lead times: 00-21 h
 - Area: Germany
 - Resolution: 2.8 km horizontal resolution
 
@@ -38,7 +38,7 @@ More information on the COSMO model can be found here: http://www.cosmo-model.or
 
 ## Post-processing
 
-All models are estimated based on the period 2011--2015 and evaluated on 2016.
+All models are estimated based on the period 2011-2015 and evaluated on 2016.
 
 ### Basic methods
 
@@ -61,12 +61,12 @@ Based on neural networks and station embedding we built a locally adaptive joint
 
 - Distributional Regression Network (DRN) estimated via CRPS and aggregated via parameter averaging
 - Bernstein Quantile Network (BQN) estimated via Quantile Loss and aggregated via quantile averaging (Vincentization)
-- Histogram Estimation Network (HEN) estimated via MLE and aggregated via quantile averaging (Vincentization    
+- Histogram Estimation Network (HEN) estimated via MLE and aggregated via quantile averaging (Vincentization)
 
 
 ## Code
 
-Due to the fact that the data cannot be publicly distributed, we supply the code used for data processing, postprocessing and evaluation. The routines for calling these functions are not supplied. 
+Due to the fact that the data cannot be publicly distributed, we supply only the code used for data processing, postprocessing and evaluation. The routines for calling these functions are not supplied. 
 Each of the R-files includes functions that can be applied to data of the desired format.
 
 | File | Description |
@@ -95,9 +95,9 @@ The following table describes variable names that are referred to in the code:
 | `location` | Station ID. |
 | `ens_mean` | Mean of the wind gust ensemble in m/s. |
 | `ens_sd` | Standard deviation of the wind gust ensemble in m/s. |
-| `ens_i` | Member i of the wind gust ensemble, i = 1, ..., 20 in m/s. |
-| `sens_mean_i` | Mean of the i-th sub-ensemble (members 5(i-1) + 1 to 5i, i.e. 1--5, 6--10, 11--15, 16--20) of the wind gust ensemble in m/s, i = 1, ..., 4. |
-| `sens_spread_i` | Spread of the i-th sub-ensemble (members 5(i-1) + 1 to 5i, i.e. 1--5, 6--10, 11--15, 16--20) of the wind gust ensemble in m/s, i = 1, ..., 4. |
+| `ens_i` | i-th Member of the wind gust ensemble in m/s, i = 1, ..., 20. |
+| `sens_mean_i` | Mean of the i-th sub-ensemble of the wind gust ensemble in m/s, i = 1, ..., 4. The four sub-ensembles are given by the members 1-5 (i = 1), 6-10 (i = 2), 11-15 (i = 3) and 16-20 (i = 4). |
+| `sens_spread_i` | Spread of the i-th sub-ensemble of the wind gust ensemble in m/s, i = 1, ..., 4. The four sub-ensembles are given by the members 1-5 (i = 1), 6-10 (i = 2), 11-15 (i = 3) and 16-20 (i = 4). |
 
 The data processing further makes use of the `loc_data`-dataframe that includes the following variables:
 
