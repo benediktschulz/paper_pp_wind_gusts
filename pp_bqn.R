@@ -1,5 +1,9 @@
 ## File containing functions for postprocessing ensemble forecasts via BQN
 
+## Acknowledgments:
+# We thank John B. Bremnes for supplying code of the original paper (https://doi.org/10.1175/MWR-D-19-0227.1),
+# on which we built the following code.
+
 # Network combination: Vincentization
 # Comment: Station embedding
 
