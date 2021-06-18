@@ -1,4 +1,4 @@
-# Statistical Postprocessing of ensemble forecasts of wind gusts
+# Machine learning methods for postprocessing ensemble forecasts of wind gusts: A systematic comparison
 
 This repository provides R-code accompanying the paper
 
