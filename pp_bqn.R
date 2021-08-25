@@ -29,7 +29,7 @@ bqn_pp <- function(train, X, i_valid = NULL, loc_id_vec = NULL,
   #................Default: NULL -> Only needed if locations are included
   #pred_vars.......Predictors used for BQN (vector of strings)
   #................Default: c("ens_mean", "ens_sd", "location") -> Use only mean and variance (with embed.)
-  #q_levels........Quantile levels used for output and evaluation (probability vector)
+  #q_levels........Quantile levels used for output and evaluation (n_q probability vector)
   #................Default: NULL -> At least 100 member, incl. median and COSMO coverage
   #nn_ls...........List that may contain the following variables:
   #...p_degree.....Degree of Bernstein polynomials (integer)
@@ -65,7 +65,7 @@ bqn_pp <- function(train, X, i_valid = NULL, loc_id_vec = NULL,
   ###-----------------------------------------------------------------------------
   ###Output
   #res...List containing:
-  #......f...............BQN forecasts (i.e. quantiles) based on nn_train (n x n_q matrix)
+  #......f...............BQN forecasts (i.e. quantiles) based on q_levels (n x n_q matrix)
   #......alpha...........BQN coefficients (n x p_degree matrix)
   #......nn_ls...........Hyperparameters (list)
   #......pred_vars.......Predictors (string vector)
