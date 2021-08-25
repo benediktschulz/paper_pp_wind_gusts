@@ -55,7 +55,7 @@ drn_pp <- function(train, X, i_valid = NULL, loc_id_vec = NULL,
   ###-----------------------------------------------------------------------------
   ###Output
   #res...List containing:
-  #......f...............Distributional forecasts (i.e. quantiles) based on nn_train (n x n_q matrix)
+  #......f...............Distributional forecasts (i.e. parameters) (n x 2 matrix)
   #......nn_ls...........Hyperparameters (list)
   #......pred_vars.......Predictors (string vector)
   #......n_preds.........Number of predictors (integer)
