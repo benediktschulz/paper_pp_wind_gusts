@@ -6,7 +6,7 @@ This repository provides R-code accompanying the paper
 > Machine learning methods for postprocessing ensemble forecasts of wind gusts: A systematic comparison. 
 > Preprint, available at https://arxiv.org/abs/2106.09512.
 
-In particular, code for data processing as well as implementation and evaluation of the proposed postprocessing methods is available.
+In particular, code for the implementation and evaluation of the proposed postprocessing methods is available. In addition, two scripts exemplify the usage of the postprocessing functions.
 
 
 ## Data
@@ -34,6 +34,17 @@ More information on the COSMO model can be found here: http://www.cosmo-model.or
 - Forecasts: Taken from closest grid points
 - Number of stations: 175
 - Attributes: longitude, latitude, altitude, altitude of closest COSMO grid point
+
+
+### Exemplary data set
+
+We supply an additional training and test set that is derived from the data used in the paper together with the following comments:
+
+- The forecast in the training set are from the period of 2010-2015, those in the test set from 2016. The initialization times are not supplied.
+- The forecasts have a common lead time, which is not supplied.
+- The ten different stations used are labeled by 1,...,10. This does not conform with the actual station IDs, which are not supplied.
+- We are using only a small subset of the available predictor variables.
+- We added random noise on all numeric variables besides the transformed day of the year.
 
 
 ## Post-processing
@@ -71,6 +82,8 @@ Each of the R-files includes functions that can be applied to data of the desire
 
 | File | Description |
 | ---- | ----------- | 
+| `example_drn` | Example for the use of DRN. |
+| `example_emos` | Example for the use of EMOS. |
 | `fn_data` | Data processing. |
 | `fn_eval` | Evaluation. |
 | `pp_bqn` | Postprocessing via BQN. |
@@ -85,9 +98,9 @@ Each of the R-files includes functions that can be applied to data of the desire
 
 ### Data structure used
 
-The functions are based on the structure of the COSMO data, which is given by R-dataframes (generated from netCDF-files). We hope that the following comments will help the reader in understanding the code. 
+The functions are based on the structure of the COSMO data, which is given by R-dataframes (generated from netCDF-files in a preprocessing step). We hope that the following comments will help the reader in understanding the code. 
 
-The following table describes variable names that are referred to in the code:
+The following table describes variable names that are referred to in the code (and the example data):
 
 | Variable | Description |
 | ---- | ----------- | 
