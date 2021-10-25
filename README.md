@@ -38,7 +38,7 @@ More information on the COSMO model can be found here: http://www.cosmo-model.or
 
 ### Exemplary data set
 
-We supply an additional training and test set that is derived from the data used in the paper together with the following comments:
+We supply an additional training (`df_train.RData`) and test set (`df_test.RData`) that is derived from the data used in the paper together with the following comments:
 
 - The forecast in the training set are from the period of 2010-2015, those in the test set from 2016. The initialization times are not supplied.
 - The forecasts have a common lead time, which is not supplied.
