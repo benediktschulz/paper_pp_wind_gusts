@@ -7,7 +7,6 @@
 
 #### Import ####
 # Import basic functions
-source(paste0(getwd(), "/fn_basic.R"))
 source(paste0(getwd(), "/fn_data.R"))
 source(paste0(getwd(), "/fn_eval.R"))
 
