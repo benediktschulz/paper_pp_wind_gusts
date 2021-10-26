@@ -40,11 +40,11 @@ More information on the COSMO model can be found here: http://www.cosmo-model.or
 
 We supply an additional training (`df_train.RData`) and test set (`df_test.RData`) that is derived from the data used in the paper together with the following comments:
 
-- The forecast in the training set are from the period of 2010-2015, those in the test set from 2016. The initialization times are not supplied.
+- The forecasts in the training set are from the period of 2010-2015, those in the test set from 2016. The initialization times are not supplied.
 - The forecasts have a common lead time, which is not supplied.
-- The ten different stations used are labeled by 1,...,10. This does not conform with the actual station IDs, which are not supplied.
+- Ten different stations are used and labeled by 1,...,10. This does not conform with the actual station IDs, which are not supplied.
 - We are using only a small subset of the available predictor variables.
-- We added random noise on all numeric variables besides the transformed day of the year.
+- We added random noise to all numeric variables besides the transformed day of the year.
 
 
 ## Post-processing
@@ -77,7 +77,7 @@ Based on neural networks and station embedding we built a locally adaptive joint
 
 ## Code
 
-Due to the fact that the data cannot be publicly distributed, we supply only the code used for postprocessing and evaluation. The scripts for data preprocessing and application of the provided functions are not supplied. 
+Due to the fact that the data cannot be publicly distributed, we supply only the code used for postprocessing and evaluation. The scripts for data preprocessing and application of the provided functions are not supplied. However, two exemplary scripts for the usage of the postprocessing functions are given.
 Each of the R-files includes functions that can be applied to data of the desired format.
 
 | File | Description |
@@ -111,14 +111,3 @@ The following table describes variable names that are referred to in the code (a
 | `ens_i` | i-th Member of the wind gust ensemble in m/s, i = 1, ..., 20. |
 | `sens_mean_i` | Mean of the i-th sub-ensemble of the wind gust ensemble in m/s, i = 1, ..., 4. The four sub-ensembles are given by the members 1-5 (i = 1), 6-10 (i = 2), 11-15 (i = 3) and 16-20 (i = 4). |
 | `sens_spread_i` | Spread of the i-th sub-ensemble of the wind gust ensemble in m/s, i = 1, ..., 4. The four sub-ensembles are given by the members 1-5 (i = 1), 6-10 (i = 2), 11-15 (i = 3) and 16-20 (i = 4). |
-
-The data processing further makes use of the `loc_data`-dataframe that includes the following variables:
-
-| Variable | Description |
-| ---- | ----------- | 
-| `name` | Name of the station. |
-| `station_id` | Station ID. |
-| `latitude` | Latitude of the station in degree. |
-| `longitude` | Longitude of the station in degree. |
-| `height` | Altitude of the station in m. |
-| `orog_DE` | Model height of the closest grid point in m. |
