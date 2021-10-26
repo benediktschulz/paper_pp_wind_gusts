@@ -125,6 +125,30 @@ update_hpar <- function(hpar_ls, in_ls){
   return(hpar_ls)
 }
 
+#### Ensemble spread ####
+# Calculate spread of ensemble (formula from Jordan et al. (2019))
+fn_spread <- function(x){
+  ###-----------------------------------------------------------------------------
+  ###Input
+  #x...Ensemble forecast (n_ens vector)
+  ###-----------------------------------------------------------------------------
+  ###Output
+  #res...Ensemble spread
+  ###-----------------------------------------------------------------------------
+  
+  #### Spread calculation ####
+  # Get ensemble size
+  n_ens <- length(x)
+  
+  # Matrix for double sum
+  A <- matrix(data = x,
+              ncol = n_ens,
+              nrow = n_ens)
+  
+  # Calculate return spread
+  return( sum(abs(A - t(A)), na.rm = TRUE) / (n_ens^2) )
+}
+
 #### Remove constant columns ####
 # Function that removes constant columns of data-frame
 rm_const <- function(data, cols = NULL, t_c = 0){
