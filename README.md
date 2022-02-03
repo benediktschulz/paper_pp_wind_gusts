@@ -2,9 +2,9 @@
 
 This repository provides R-code accompanying the paper
 
-> Schulz, B. and Lerch, S. (2021). 
+> Schulz, B. and Lerch, S. (2022). 
 > Machine learning methods for postprocessing ensemble forecasts of wind gusts: A systematic comparison. 
-> Preprint, available at https://arxiv.org/abs/2106.09512.
+> Monthly Weather Review, 150, 235-257, https://doi.org/10.1175/MWR-D-21-0150.1 (preprint version available at https://arxiv.org/abs/2106.09512).
 
 In particular, code for the implementation and evaluation of the proposed postprocessing methods is available. In addition, two scripts exemplify the usage of the postprocessing functions.
 
