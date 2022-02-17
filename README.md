@@ -77,7 +77,7 @@ Based on neural networks and station embedding we built a locally adaptive joint
 
 ## Code
 
-Due to the fact that the data cannot be publicly distributed, we supply only the code used for postprocessing and evaluation. The scripts for data preprocessing and application of the provided functions are not supplied. However, two exemplary scripts for the usage of the postprocessing functions are given.
+Due to the fact that the data cannot be distributed publicly, we supply only the code used for postprocessing and evaluation. The scripts for data preprocessing and application of the provided functions are not supplied. However, two exemplary scripts for the usage of the postprocessing functions are given.
 Each of the R-files includes functions that can be applied to data of the desired format.
 
 | File | Description |
