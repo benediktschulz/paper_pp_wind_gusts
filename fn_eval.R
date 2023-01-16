@@ -707,11 +707,15 @@ fn_dm <- function(s0, s1){
   
   #### Calculation ####
   # Calculate test statistic
-  res <- sqrt(length(s0))*(mean(s0) - mean(s1))/mean((s0 - s1)^2)
+  res <- sqrt(length(s0)/mean((s0 - s1)^2))*(mean(s0) - mean(s1))
+  
+  # # Old, incorrect version! See Corrigendum!
+  # res <- sqrt(length(s0))*(mean(s0) - mean(s1))/mean((s0 - s1)^2)
   
   # output
   return(res)
 }
+
 #### Benjamini-Hochberg correction ####
 # Function for Diebold-Mariano test statistic
 fn_bh <- function(p_vals, alpha_fdr = 0.05){
