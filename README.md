@@ -8,19 +8,55 @@ This repository provides R-code accompanying the paper
 
 In particular, code for the implementation and evaluation of the proposed postprocessing methods is available. In addition, two scripts exemplify the usage of the postprocessing functions.
 
+## Update (May 24): Description of uploaded data set ##
+
+The data is now publicly available at
+
+> Schulz, B. and Lerch, S. (2024). 
+> Machine learning methods for postprocessing ensemble forecasts of wind gusts: Data. 
+> Karlsruhe Institute of Technology, https://doi.org/10.35097/afEBrMYqNrxxvrLX.
+
+ In the following, we provide information on the uploaded data set.
+
+First, we note that we supply the `score_data` file, which includes the scores of all methods in the test period, and the `loc_data` file, which includes the name of the stations, their coordinates, their height and the height of the closest grid point. Note that the station data is required to generate the spatial predictors.
+
+**Ensemble data**
+
+The ensemble forecast data and observations are provided in the `ens_data` directory, where one file is provided for each lead time. Each file contains one data frame for training and testing. Further, one vector with the names of the additional meteorological variables is included.
+
+**Postprocessing data**
+
+The postprocessed forecasts for the test period 2016 are provided in the `pp_forecasts` directory, where one file is provided for each lead time. Each file contains one list with forecasts for each postprocessing method and the ensemble.
+
+The data for the generation of the postprocessed forecasts are provided in the `pp_data` directory, where one file is provided for each lead time and method. Next to scores, sample sizes, run times, hyperparameters and predictors, we supply the following information:
+
+| Method | Information |
+| ---- | ----------- | 
+| `emos_sea` | Forecast distribution parameters, EMOS coefficients. |
+| `mbm_sea` | Forecast ensembles, MBM coefficients. |
+| `idr` | Forecast quantiles, fitted models. |
+| `emos_bst` | Forecast distribution parameters, fitted crch-models (coefficients, residuals, coefficient path,...). |
+| `qrf_loc` | Forecast quantiles, fitted RF models (feature importance, trees,...). |
+| `bqn` | Forecast quantiles and Bernstein coefficients. |
+| `drn` | Forecast distribution parameters. |
+| `hen` | Forecasts for bin edges and bin probabilities. |
+
+Note that we reduced the size of the fitted EMOS-GB models, hence they cannot be used with the `predict` function. Still, one can extract the coefficients to generate predictions.
+
+Further, we supply the `epc_data` file which includes the observational data base used the generate the EPC ensemble forecasts and the scores of the EPC forecasts on the test period (including the ensemble size of each EPC forecast).
 
 ## Data
 
-The data was supplied by the German weather service (Deutscher Wetterdienst, DWD) and is not publicly available.
+The data was supplied by the German weather service (Deutscher Wetterdienst, DWD) and was made publicly available by the authors in May 24.
 
 ### Ensemble Forecasts
 
 **COSMO-DE-EPS**
 
-- Variables: Wind gust and various additional predictors
+- Variables: Wind gust and various additional variables (see Table 1).
 - Time period: 2010-12-08 - 2016-12-31
 - Forecast initialization time: 00 UTC
-- Members: 20
+- Ensemble members: 20
 - Forecast lead times: 00-21 h
 - Area: Germany
 - Resolution: 2.8 km horizontal resolution
@@ -37,6 +73,8 @@ More information on the COSMO model can be found here: http://www.cosmo-model.or
 
 
 ### Exemplary data set
+
+Update May 24: Note that the full data set is now available.
 
 We supply an additional training (`df_train.RData`) and test set (`df_test.RData`) that is derived from the data used in the paper together with the following comments:
 
@@ -77,7 +115,7 @@ Based on neural networks and station embedding we built a locally adaptive joint
 
 ## Code
 
-Due to the fact that the data cannot be distributed publicly, we supply only the code used for postprocessing and evaluation. The scripts for data preprocessing and application of the provided functions are not supplied. However, two exemplary scripts for the usage of the postprocessing functions are given.
+Here, we supply the code used for data preprocessing, postprocessing and evaluation. Two exemplary scripts for the usage of the postprocessing functions are given.
 Each of the R-files includes functions that can be applied to data of the desired format.
 
 | File | Description |
