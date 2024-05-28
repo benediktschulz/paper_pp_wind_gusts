@@ -1,16 +1,22 @@
 ## File with exemplary usage of EMOS function
 
 
+# Set path to data
+data_path <- "/wind_gust_data"
+
+# Set path to github functions
+r_path <- getwd()
+
 #### Example with full data ####
 # Load training and test data
-load(file = paste0(getwd(), "/ens_data_step18.RData"))
+load(file = paste0(data_path, "/ens_data/ens_data_step18.RData"))
 
 # Consider only one location for local EMOS (Select "Karlsruhe-Rheinstetten")
 df_train <- subset(df_train, location == "10731")
 df_test <- subset(df_test, location == "10731")
 
 # Import postprocessing function
-source(paste0(getwd(), "/pp_emos.R"))
+source(paste0(r_path, "/pp_emos.R"))
 
 # Data preprocessing
 df_train <- prep_data(df = df_train,
@@ -47,15 +53,15 @@ print(100*(1 - mean(pred[["scores_pp"]][["crps"]])/mean(pred[["scores_ens"]][["c
 
 #### Example with exemplary data from Github ####
 # Load training and test data
-load(file = paste0(getwd(), "/df_train.RData"))
-load(file = paste0(getwd(), "/df_test.RData"))
+load(file = paste0(r_path, "/df_train.RData"))
+load(file = paste0(r_path, "/df_test.RData"))
 
 # Consider only one location for local EMOS?
 df_train <- subset(df_train, location == "2")
 df_test <- subset(df_test, location == "2")
 
 # Import postprocessing function
-source(paste0(getwd(), "/pp_emos.R"))
+source(paste0(r_path, "/pp_emos.R"))
 
 # Estimate EMOS parameters
 est <- emos_est(train = df_train)
